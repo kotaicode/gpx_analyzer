@@ -1,0 +1,52 @@
+# Taskfile.yml
+version: "3"
+tasks:
+  install:
+    desc: Install all dependencies locally
+    cmds:
+      - pip install -r requirements.txt
+
+  test:
+    desc: Run all tests
+    cmds:
+      - pytest tests/ -v
+
+  test-coverage:
+    desc: Run tests with coverage report
+    cmds:
+      - pytest tests/ --cov=. --cov-report=term-missing -v
+
+  test-watch:
+    desc: Run tests in watch mode
+    cmds:
+      - ptw tests/
+
+  build:
+    desc: Build the Docker image
+    cmds:
+      - docker build -t gpx-surface-analyzer .
+
+  push:
+    desc: Push the Docker image to a container registry
+    vars:
+      registry: "my-registry"
+    cmds:
+      - docker tag gpx-surface-analyzer {{.registry}}/gpx-surface-analyzer
+      - docker push {{.registry}}/gpx-surface-analyzer
+
+  run:
+    desc: Run the Docker container locally
+    cmds:
+      - docker run -p 5000:5000 gpx-surface-analyzer
+
+  k8s-deploy:
+    desc: Deploy to Kubernetes
+    cmds:
+      - kubectl apply -f k8s/deployment.yaml
+      - kubectl apply -f k8s/service.yaml
+
+  k8s-delete:
+    desc: Remove from Kubernetes
+    cmds:
+      - kubectl delete -f k8s/service.yaml
+      - kubectl delete -f k8s/deployment.yaml
