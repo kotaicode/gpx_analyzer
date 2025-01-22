@@ -22,8 +22,8 @@ This tool is ideal for cyclists planning trips who need insights into route surf
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd gpx-surface-analyzer
+   git clone https://github.com/kotaicode/gpx_analyzer
+   cd gpx_analyzer
    ```
 
 2. Install dependencies:
@@ -57,7 +57,7 @@ This tool is ideal for cyclists planning trips who need insights into route surf
 1. Send a POST request to the `/analyze_surface` endpoint with a GPX file.
    Example using `curl`:
    ```bash
-   curl -X POST -F "gpx_file=@path/to/track.gpx" http://127.0.0.1:5000/analyze_surface
+   curl -X POST -F "gpx_file=@examples/069-gravelbike-track.gpx" http://127.0.0.1:5000/analyze_surface
    ```
 
 2. The response will include:
