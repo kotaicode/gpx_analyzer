@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gpx-surface-analyzer
-        image: my-registry/gpx-surface-analyzer:latest
+        image: my-registry/gpx-surface-analyzer:latest # update image with ghcr image
         ports:
         - containerPort: 5000
         resources:
